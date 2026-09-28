@@ -1,10 +1,9 @@
-# Git Manager Agent Skill
+# Git Manager Agent Skill for Codex
 
 **Small commits. Preserved behavior. Clear handoffs.**
 
 Git Manager Agent Skill helps Codex turn coding work into small, verified Git checkpoints that people can understand and continue. It guides repository inspection, careful refactoring, branch coordination, validation, and durable handoffs so progress stays recoverable and essential knowledge stays with the code.
 
-**This version supports Codex only.** Support for other agents has not been validated.
 
 Created by **akxpse**. Released under the [MIT license](LICENSE).
 
