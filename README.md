@@ -21,6 +21,7 @@ This skill addresses those problems with frequent checkpoints, explicit ownershi
 * Uses a dedicated task branch and checks available branch activity for overlapping changes.
 * Starts with an audit of project owned code, tests, configuration, and documentation. It resolves concrete findings in reviewable increments before ordinary task implementation.
 * Preserves contracts, validation, errors, side effects, ordering, and edge cases during cleanup. Intentional behavior changes require separate authorization.
+* Checks for exposed API keys and other credentials, insecure code, and vulnerable direct or transitive packages. Findings include evidence, severity, and validation limits.
 * Validates each coherent increment, reviews working and staged diffs, then verifies the resulting commit.
 * Targets a checkpoint within 15 minutes of active editing. When policy permits, incomplete recovery commits record gaps, failed or unrun checks, and the next action.
 * Leaves enough durable context for a developer to continue without the original chat.
@@ -88,6 +89,9 @@ Preserve existing behavior during cleanup. Treat behavior changes as
 separately authorized work. Inspect overlapping branches, preserve others'
 work, and validate combined changes after authorized integration.
 
+Assess exposed secrets, insecure code, and vulnerable packages. Report
+redacted evidence and checks that could not run.
+
 Reviews that only inspect code must not create branches, edits, commits,
 or pushes. The skill does not independently authorize pushes or override
 repository instructions and ownership boundaries.
@@ -98,6 +102,16 @@ repository instructions and ownership boundaries.
 The skill provides instructions. It is not a timer or a guarantee against bugs, interruption, data loss, or agent noncompliance. Local commits do not protect against loss of the disk or workspace. Remote protection requires a successful push to an authorized destination.
 
 Separate worktrees protect files and indexes, but cannot prevent semantic conflicts between branches. Required checks, repository policies, and ownership boundaries still apply. Reviews that only inspect code must not trigger workflow mutations.
+
+## Security checks
+
+During initial adoption, the skill assesses project files, hidden configuration, package manifests and lockfiles, and available Git history. It checks changed and staged content before checkpoints and outgoing commits before publication. Code review covers risks such as injection, authorization failures, unsafe deserialization, sensitive logging, and excessive permissions.
+
+The agent uses approved tools and current authoritative package advisories where available. It records what ran, what could not run, and which findings remain uncertain. It must not print secret values or send code, credentials, or dependency inventories to external scanners without authorization.
+
+Suspected live credentials must not enter a commit or push. The agent reports redacted locations and requests owner rotation or revocation. Removing a key from the latest file does not erase exposure in Git history. Package updates and security fixes still need appropriate authorization and validation; the skill does not allow blind upgrades or removal of safeguards.
+
+These are assessment instructions, not a bundled scanner or security certification. Missing tools, unavailable history, and incomplete scans must be disclosed.
 
 ## Files and evaluation
 

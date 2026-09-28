@@ -28,6 +28,17 @@ Separate known baseline failures from task-introduced failures; identify unclass
 - Run/reproduce: <steps, prerequisites, or existing documentation>
 - Human review: <actual review, or not performed>
 
+## Security assessment
+
+- Scope and visibility: <files, configuration, staged/outgoing commits, available history, and excluded or inaccessible areas>
+- Checks: <exact commands, tool versions where relevant, passed/failed/unrun outcomes, and reasons; identify any external data disclosure authorization>
+- Secret findings: <redacted locations and exposure status; never include credential values; owner notification and rotation/revocation status>
+- Code and package findings: <affected path or package/version, direct/transitive dependency, dated authoritative advisory links, severity, confidence, and reachability evidence>
+- Classification: <baseline versus introduced findings; confirmed issues, suspected issues, false positives, and rationale>
+- Disposition: <authorized fix and validation, unresolved blocker, approved exception, owner, and next action>
+
+A clean scan is not proof of security. Preserve uncertainty and tool/history limitations; do not mark unrun checks as passed.
+
 ## Branches and recovery
 
 - Task branch and inspected base: <verified names and base commit>
